@@ -128,7 +128,7 @@ const renderTime = (day: string) => {
   }
 }
 const handlePutTime = () => {
-  signsStore.putTimeAction({userid: usersInfos.value._id}).then((res)=>{
+  signsStore.putTimeAction({userid: usersInfos.value?._id}).then((res)=>{
     if(res.data.errcode === 0){
       signsStore.updateInfos(res.data.infos) 
       ElMessage.success('签到成功')

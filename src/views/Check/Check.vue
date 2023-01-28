@@ -63,7 +63,7 @@ const handleChange = (value: number) => {
 const handlePutApply = (_id: string, state: '已通过' | '未通过', applicantid: string) => {
   checksStore.putApplyAction({_id, state}).then((res)=>{
     if(res.data.errcode === 0){
-      checksStore.getApplyAction({ approverid: usersInfos.value._id }).then((res)=>{
+      checksStore.getApplyAction({ approverid: usersInfos.value?._id }).then((res)=>{
         if(res.data.errcode === 0){
           checksStore.updateCheckList(res.data.rets)
         }

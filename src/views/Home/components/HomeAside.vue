@@ -25,7 +25,7 @@ const { infos } = storeToRefs(usersStore)
 
 const router = useRouter();
 const route = useRoute();
-const permission = infos.value.permission;
+const permission = infos.value?.permission;
 
 const menus = _.cloneDeep(router.options.routes).filter((v)=> {
   v.children = v.children?.filter((v)=> v.meta?.menu && (permission as (RouteRecordName|undefined)[]).includes(v.name));

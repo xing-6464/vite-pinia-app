@@ -8,7 +8,8 @@
     },
     "types": [
       "element-plus/global"
-    ]
+    ],
+    "module": "ESNext"
   },
 
   "references": [

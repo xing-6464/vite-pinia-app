@@ -100,7 +100,7 @@ const { applyList: checksApplyList } = storeToRefs(checksStore)
 const defaultType = '全部'
 const approverType = ref(defaultType)
 const searchWord = ref('')
-const approver = computed(()=> usersInfos.value.approver as {[index: string]: unknown}[])
+const approver = computed(()=> usersInfos.value?.approver as {[index: string]: unknown}[])
 const applyList = computed(()=> checksApplyList.value.filter((v)=> (v.state === approverType.value || defaultType === approverType.value) && (v.note as string).includes(searchWord.value)))
 const pageSize = ref(2)
 const pageCurrent = ref(1)
@@ -154,14 +154,14 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      ruleForm.applicantid = usersInfos.value._id as string;
-      ruleForm.applicantname = usersInfos.value.name as string;
+      ruleForm.applicantid = usersInfos.value?._id as string;
+      ruleForm.applicantname = usersInfos.value?.name as string;
       ruleForm.approverid = (approver.value.find((v)=> v.name === ruleForm.approvername) as {[index: string]: unknown})._id as string;
       ruleForm.time[0] = moment(ruleForm.time[0]).format('YYYY-MM-DD hh:mm:ss')
       ruleForm.time[1] = moment(ruleForm.time[1]).format('YYYY-MM-DD hh:mm:ss')
       checksStore.postApplyAction(ruleForm).then((res)=>{
         if(res.data.errcode === 0){
-          checksStore.getApplyAction({ applicantid: usersInfos.value._id }).then((res)=>{
+          checksStore.getApplyAction({ applicantid: usersInfos.value?._id }).then((res)=>{
             if(res.data.errcode === 0){
               checksStore.updateApplyList(res.data.rets)
             }

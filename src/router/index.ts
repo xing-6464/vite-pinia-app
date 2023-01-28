@@ -57,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
           const { infos: signsInfos } = storeToRefs(signsStore)
           const { info: newsInfo } = storeToRefs(newsStore)
           if( _.isEmpty(signsInfos.value) ){
-            const res = await signsStore.getTimeAction({ userid: usersInfos.value._id })
+            const res = await signsStore.getTimeAction({ userid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               signsStore.updateInfos(res.data.infos)
             }
@@ -66,7 +66,7 @@ const routes: Array<RouteRecordRaw> = [
             }
           }
           if( _.isEmpty(newsInfo.value) ){
-            const res = await newsStore.getRemindAction({ userid: usersInfos.value._id })
+            const res = await newsStore.getRemindAction({ userid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               newsStore.updateInfo(res.data.info)
             }
@@ -97,7 +97,7 @@ const routes: Array<RouteRecordRaw> = [
           const { info: newsInfo } = storeToRefs(newsStore)
           const { applyList: checksApplyList } = storeToRefs(checksStore)        
           if( _.isEmpty(signsInfos.value) ){
-            const res = await signsStore.getTimeAction({ userid: usersInfos.value._id })
+            const res = await signsStore.getTimeAction({ userid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               signsStore.updateInfos(res.data.infos)
             }
@@ -106,7 +106,7 @@ const routes: Array<RouteRecordRaw> = [
             }
           }
           if( _.isEmpty(checksApplyList.value) ){
-            const res = await checksStore.getApplyAction({ applicantid: usersInfos.value._id })
+            const res = await checksStore.getApplyAction({ applicantid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               checksStore.updateApplyList(res.data.rets)
             }
@@ -115,7 +115,7 @@ const routes: Array<RouteRecordRaw> = [
             }
           }
           if( _.isEmpty(newsInfo.value) ){
-            const res = await newsStore.getRemindAction({ userid: usersInfos.value._id })
+            const res = await newsStore.getRemindAction({ userid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               newsStore.updateInfo(res.data.info)
             }
@@ -145,7 +145,7 @@ const routes: Array<RouteRecordRaw> = [
           const { info: newsInfo } = storeToRefs(newsStore)
           
           if( _.isEmpty(checksApplyList.value) ){
-            const res = await checksStore.getApplyAction({ applicantid: usersInfos.value._id })
+            const res = await checksStore.getApplyAction({ applicantid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               checksStore.updateApplyList(res.data.rets)
             }
@@ -154,7 +154,7 @@ const routes: Array<RouteRecordRaw> = [
             }
           }
           if( newsInfo.value.applicant ){
-            const res = await newsStore.putRemindAction({ userid: usersInfos.value._id, applicant: false })
+            const res = await newsStore.putRemindAction({ userid: usersInfos.value?._id, applicant: false })
             if(res.data.errcode === 0){
               newsStore.updateInfo(res.data.info)
             }
@@ -183,7 +183,7 @@ const routes: Array<RouteRecordRaw> = [
           const { checkList: checksCheckList } = storeToRefs(checksStore)
           const { info: newsInfo } = storeToRefs(newsStore)
           if( _.isEmpty(checksCheckList.value) ){
-            const res = await checksStore.getApplyAction({ approverid: usersInfos.value._id })
+            const res = await checksStore.getApplyAction({ approverid: usersInfos.value?._id })
             if(res.data.errcode === 0){
               checksStore.updateCheckList(res.data.rets)
             }
@@ -192,7 +192,7 @@ const routes: Array<RouteRecordRaw> = [
             }
           }
           if( newsInfo.value.approver ){
-            const res = await newsStore.putRemindAction({ userid: usersInfos.value._id, approver: false })
+            const res = await newsStore.putRemindAction({ userid: usersInfos.value?._id, approver: false })
             if(res.data.errcode === 0){
               newsStore.updateInfo(res.data.info)
             }

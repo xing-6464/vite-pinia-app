@@ -45,8 +45,8 @@ const newsStore = useNewsStore()
 const { infos } = storeToRefs(usersStore)
 const { info: newsInfo } = storeToRefs(newsStore)
 
-const head = computed(()=> infos.value.head)
-const name = computed(()=> infos.value.name)
+const head = computed(()=> infos.value?.head)
+const name = computed(()=> infos.value?.name)
 const isDot = computed(()=> (newsInfo.value.applicant || newsInfo.value.approver) as boolean)
 
 const handleLogout = () => {
